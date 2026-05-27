@@ -8,14 +8,14 @@ namespace WindowLobby.crud
     {
         private readonly HttpClient client = new HttpClient();
 
-        public async Task<string> Login(string email, string senha)
+        public async Task<string> Login(string emailUsu, string senhaUsu)
         {
             string url = "http://127.0.0.1:8000/login";
 
             var dados = new
             {
-                email = email,
-                senha = senha
+                email = emailUsu.Trim(),
+                senha = senhaUsu.Trim()
             };
 
             string json = JsonSerializer.Serialize(dados);
