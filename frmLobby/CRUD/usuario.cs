@@ -4,11 +4,16 @@ using System.Text.Json;
 
 namespace WindowLobby.crud
 {
-    public class Usuario
+    public static class Usuario
     {
-        private readonly HttpClient client = new HttpClient();
+        private static readonly HttpClient client =
+            new HttpClient();
 
-        public async Task<string> Login(string emailUsu, string senhaUsu)
+        public static async Task<string> Login(
+            string emailUsu,
+            string senhaUsu
+        )
+
         {
             string url = "http://127.0.0.1:8000/login";
 
@@ -18,18 +23,21 @@ namespace WindowLobby.crud
                 senha = senhaUsu.Trim()
             };
 
-            string json = JsonSerializer.Serialize(dados);
+            string json =
+                JsonSerializer.Serialize(dados);
 
-            StringContent content = new StringContent(
-                json,
-                Encoding.UTF8,
-                "application/json"
-            );
+            StringContent content =
+                new StringContent(
+                    json,
+                    Encoding.UTF8,
+                    "application/json"
+                );
 
-            HttpResponseMessage resposta = await client.PostAsync(
-                url,
-                content
-            );
+            HttpResponseMessage resposta =
+                await client.PostAsync(
+                    url,
+                    content
+                );
 
             if (!resposta.IsSuccessStatusCode)
             {
@@ -37,7 +45,37 @@ namespace WindowLobby.crud
             }
 
             string respostaJson =
-                await resposta.Content.ReadAsStringAsync();
+                await resposta.Content
+                .ReadAsStringAsync();
+
+            return respostaJson;
+        }
+
+        public static async Task<string> GetUsuarios(
+            string token
+        )
+        {
+            string url =
+                "http://127.0.0.1:8000/usuarios";
+
+            client.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers
+                .AuthenticationHeaderValue(
+                    "Bearer",
+                    token
+                );
+
+            HttpResponseMessage resposta =
+                await client.GetAsync(url);
+
+            if (!resposta.IsSuccessStatusCode)
+            {
+                return null;
+            }
+
+            string respostaJson =
+                await resposta.Content
+                .ReadAsStringAsync();
 
             return respostaJson;
         }

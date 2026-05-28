@@ -11,6 +11,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WindowLobby;
 using WindowLobby.crud;
+using WindowLobby.CRUD;
 namespace WindowLogin
 {
     public partial class Login : Window
@@ -25,9 +26,8 @@ namespace WindowLogin
            
             if(txtEmail.Text.Contains("@diartrip.com") && txtSenha.Password.Length == 5)
             {
-                try{
-                    Usuario usuario = new Usuario();
-                    var msg = await usuario.Login(txtEmail.Text, txtSenha.Password);
+                try{                  
+                    var msg = await Usuario.Login(txtEmail.Text, txtSenha.Password);
 
                     if (msg != null)
                     {
@@ -35,7 +35,12 @@ namespace WindowLogin
 
                         MessageBox.Show(json["mensagem"]?.GetValue<String>());
                      
+                        Sessao.Token = json["token"]?.GetValue<String>();
+
+                        Sessao.UsuarioId = json["usuario_id"]?.GetValue<int>() ?? 0;                       
+
                         Dashboard lobby = new Dashboard();
+
                         lobby.Show();
                         this.Close();
                     }

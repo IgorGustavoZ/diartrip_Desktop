@@ -125,22 +125,28 @@
 
                 <!-- CARD 1 -->
                 <Border Grid.Column="0"
-                        Margin="0,0,15,0"
+                        Margin="10,0,191,0"
                         Background="#1E293B"
                         CornerRadius="20"
-                        Padding="25">
+                        Padding="25" Grid.ColumnSpan="2"
+                        Width="300"
+                        >
 
                     <StackPanel>
 
                         <TextBlock Text="Usuários"
                                    FontSize="18"
-                                   Foreground="#CBD5E1"/>
+                                   Foreground="#CBD5E1"
+                                   
+                                   />
 
-                        <TextBlock Text="1.248"
+                        <TextBlock Text="0"
                                    FontSize="42"
                                    FontWeight="Bold"
                                    Foreground="White"
-                                   Margin="0,15,0,0"/>
+                                   Margin="0,15,0,0"
+                                   Name="txtUsuarios"
+                                   />
 
                     </StackPanel>
 
@@ -148,10 +154,12 @@
 
                 <!-- CARD 2 -->
                 <Border Grid.Column="1"
-                        Margin="0,0,15,0"
+                        Margin="99,0,99,0"
                         Background="#1E293B"
                         CornerRadius="20"
-                        Padding="25">
+                        Padding="25" Grid.ColumnSpan="2"
+                        Width="300"
+                        >
 
                     <StackPanel>
 
@@ -159,7 +167,7 @@
                                    FontSize="18"
                                    Foreground="#CBD5E1"/>
 
-                        <TextBlock Text="532"
+                        <TextBlock Text="0"
                                    FontSize="42"
                                    FontWeight="Bold"
                                    Foreground="White"
@@ -171,10 +179,12 @@
 
                 <!-- CARD 3 -->
                 <Border Grid.Column="2"
-                        Margin="0,0,15,0"
+                        Margin="189,0,10,0"
                         Background="#1E293B"
                         CornerRadius="20"
-                        Padding="25">
+                        Padding="25" Grid.ColumnSpan="2"
+                        Width="300"
+                        >
 
                     <StackPanel>
 
@@ -182,7 +192,7 @@
                                    FontSize="18"
                                    Foreground="#CBD5E1"/>
 
-                        <TextBlock Text="12.5K"
+                        <TextBlock Text="0"
                                    FontSize="42"
                                    FontWeight="Bold"
                                    Foreground="White"
@@ -193,26 +203,6 @@
                 </Border>
 
                 <!-- CARD 4 -->
-                <Border Grid.Column="3"
-                        Background="#1E293B"
-                        CornerRadius="20"
-                        Padding="25">
-
-                    <StackPanel>
-
-                        <TextBlock Text="Destinos"
-                                   FontSize="18"
-                                   Foreground="#CBD5E1"/>
-
-                        <TextBlock Text="74"
-                                   FontSize="42"
-                                   FontWeight="Bold"
-                                   Foreground="White"
-                                   Margin="0,15,0,0"/>
-
-                    </StackPanel>
-
-                </Border>
 
             </Grid>
 
@@ -224,46 +214,118 @@
 
                 <StackPanel>
 
-                    <TextBlock Text="Últimas viagens"
+                    <TextBlock Text="Usuários:"
                                FontSize="24"
                                FontWeight="Bold"
                                Foreground="White"
                                Margin="0,0,0,20"/>
-
                     <DataGrid
-                        x:Name="gridViagens"
-                        Height="350"
+                        x:Name="gridUsuarios"
+                        Height="107"
+                        
+                        IsReadOnly="True"
+                        CanUserAddRows="False"
+                        CanUserDeleteRows="False"
+                        CanUserResizeRows="False"
+                        
                         AutoGenerateColumns="False"
                         Background="#1E293B"
-                        Foreground="White"
+                        Foreground="#fff"
                         BorderThickness="0"
                         HeadersVisibility="Column"
                         RowBackground="#1E293B"
                         AlternatingRowBackground="#273549"
-                        GridLinesVisibility="None">
+                        GridLinesVisibility="None" Width="956">
+
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+
+                                <Setter Property="Foreground" Value="#1E293B"/>
+
+                                <Setter Property="FontSize" Value="14"/>
+
+                                <Setter Property="Padding" Value="10,5,10,5"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
 
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="Usuário"
-                                                Binding="{Binding Usuario}"
+                            <DataGridTextColumn Header="Id"
+                                                Binding="{Binding id_usuario}"
                                                 Width="*"/>
 
-                            <DataGridTextColumn Header="Destino"
-                                                Binding="{Binding Destino}"
+                            <DataGridTextColumn Header="Nome"
+                                                Binding="{Binding nome}"
                                                 Width="*"/>
 
-                            <DataGridTextColumn Header="Data"
-                                                Binding="{Binding Data}"
+                            <DataGridTextColumn Header="Email"
+                                                Binding="{Binding email}"
                                                 Width="*"/>
 
-                            <DataGridTextColumn Header="Orçamento"
-                                                Binding="{Binding Orcamento}"
+                            <DataGridTextColumn Header="Data de criação"
+                                                Binding="{Binding data_criacao}"
                                                 Width="*"/>
 
                         </DataGrid.Columns>
 
                     </DataGrid>
 
+                    <TextBlock Text="Viagens:"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="White"
+                   Margin="0,0,0,20"/>
+
+                    <DataGrid
+                    x:Name="gridViagens"
+                    Height="107"
+    
+                    IsReadOnly="True"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    CanUserResizeRows="False"
+    
+                    AutoGenerateColumns="False"
+                    Background="#1E293B"
+                    Foreground="#fff"
+                    BorderThickness="0"
+                    HeadersVisibility="Column"
+                    RowBackground="#1E293B"
+                    AlternatingRowBackground="#273549"
+                    GridLinesVisibility="None" Width="956">
+
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+
+                                <Setter Property="Foreground" Value="#1E293B"/>
+
+                                <Setter Property="FontSize" Value="14"/>
+
+                                <Setter Property="Padding" Value="10,5,10,5"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Id"
+                            Binding="{Binding id_grupo}"
+                            Width="*"/>
+
+                            <DataGridTextColumn Header="Nome"
+                            Binding="{Binding nome_grupo}"
+                            Width="*"/>
+
+                            <DataGridTextColumn Header="Destino"
+                            Binding="{Binding destino_principal}"
+                            Width="*"/>
+
+                            <DataGridTextColumn Header="Criado por"
+                            Binding="{Binding criado_por}"
+                            Width="*"/>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
                 </StackPanel>
 
             </Border>
